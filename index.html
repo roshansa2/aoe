@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Art Of Elements</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Operetta:wght@300;400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      /*outline: 1px solid red;*/
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Operetta', serif;
+      background: #f2f2f2;
+      color: #000;
+      overflow-x: hidden;  /* Prevent horizontal scroll */
+      
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+      background: url('Twirling-to-the-magic.jpg') no-repeat center center/cover;
+      background-size: cover;
+      
+    }
+
+
+    /* Video as background */
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none; /* Prevent interaction with the video */
+      filter: grayscale(100%); /* Apply grayscale effect to the video */
+      opacity: 0.5; /* Optional: Make the video more subtle */
+       
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 2;
+    }
+
+    .header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 20px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: 1px;
+      margin-right: 1px;
+       
+    }
+
+    .logo1 img {
+      width: 200px; /* Adjust the size of the logo */
+      height: auto;
+      margin-left: 50px;
+       
+    }
+
+    .nav {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      width: fit-content; 
+      margin-right: 50px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 14px;
+      transition: color 0.3s;
+      margin: 5px 10px;
+    }
+
+    .nav a:hover {
+      color: #999;
+    }
+
+    .cta-button {
+      background-color: #b89f60;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .cta-button:hover {
+      background-color: #a58d54;
+    }
+
+    /* New Section */
+    .section {
+      background-color: #f8f0e8;
+      position: relative;
+      width: 100%;
+      height: 900px; /* Adjust the height as needed */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .section .image {
+      position: absolute;
+      bottom: 130px;
+      left: 80px;
+      z-index: 1;
+      width: 420px; /* Set to same size */
+      height: auto;
+    }
+
+    .section .text {
+      position: absolute;
+      z-index: 2;
+      text-align: left;
+      color: #000;
+      font-size: 15px;
+      font-weight: 400;
+      width: 100%;
+      top: 380px;  /* Center vertically */
+      transform: translateY(-50%);
+      left: 520px;
+      line-height: 25px;
+      width: fit-content; 
+    }
+
+    .section .image-second {
+      position: absolute;
+      top: 50px;
+      right: 80px;
+      z-index: 1;
+      width: 420px; /* Set to same size */
+      height: auto;
+      margin-top: 20px; /* Add margin from top */
+    }
+
+    /* New image in the middle slightly upwards */
+    .section .image-middle {
+      position: absolute;
+      left: 725px;
+      top: 120px; /* Adjust this to slightly move the image upwards */
+      transform: translateX(-50%); /* Center horizontally */
+      z-index: 3;
+      width: 800px; /* Increased by 150% from original size (200px * 1.5) */
+      height: auto;
+    }
+    
+/* Square Images Section */
+.square-images-section {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-right: 0.1em;
+  padding-left: 0.1em;/* Adjust padding as needed */
+  background-color: #f8f0e8; /* Optional: Set a background color */
+  width: 100%;
+  height: auto;
+}
+
+.square-images-container {
+  display: grid;
+  
+  grid-template-columns: repeat(5, 1fr); /* 5 columns for PC */
+}
+
+.square-image {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 0.01em;
+  padding-right: 0.1em;
+  padding-left: 0.1em;
+  
+}
+
+.square-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Ensure images are square */
+  object-fit: cover; /* Crop the image to fit */
+  border-radius: 0px; /* Optional: Rounded corners */
+  transition: transform 0.3s ease;
+}
+
+/* Photography Section */
+.photography-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 photos in a row for PC */
+  padding: 100px 50px;
+  background-color: #f8f0e8; /* Optional: Set background color */
+}
+
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align content to the left */
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.photo-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Ensure photos are 4:5 size */
+  object-fit: cover;
+  
+}
+
+ 
+.photo-info {
+  margin-top: 15px;
+  font-family: 'Operetta', serif;
+}
+
+.photo-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  font-family: 'Operetta', serif;
+}
+
+.photo-description {
+  font-size: 14px;
+  color: #555;
+}
+ 
+/* Centered Button */
+.photography-blog-button {
+  display: flex;
+  justify-content: center; /* Horizontally center the button */
+   /* Add some spacing above the button */
+  background-color: #f8f0e8;
+}
+
+.photography-blog-button button {
+  background-color: #b89f60; /* Button background color */
+  color: #fff; /* Text color */
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: -60px;
+  margin-bottom: 60px;
+  width: fit-content;
+}
+
+.photography-blog-button button:hover {
+  background-color: #a58d54; /* Darker shade on hover */
+}
+ 
+
+/* Video Section */
+.video-section {
+  position: relative;
+  height: 100vh; /* Adjust the height based on your design */
+  background-color: #f8f0e8;
+  margin-bottom: 100px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f8f0e8;
+}
+
+.video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   
+}
+
+.text-overlay {
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+}
+
+.text-overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-family: serif;
+}
+
+.text-overlay p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+ 
+
+
+    /* Mobile Styles */
+@media (max-width: 768px) {
+  /* Hide regular navigation on mobile */
+  .nav {
+    display: none; /* Hide the main nav links */
+  }
+
+  /* Show the hamburger menu icon on mobile */
+  .mobile-menu-icon img {
+    display: block; /* Show the mobile menu icon */
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    z-index: 9999; /* Ensure it's above all other elements */
+    cursor: pointer;
+    width: 40px;
+    height: auto;
+  }
+
+  /* Mobile nav menu */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 1); /* Dark background for the mobile menu */
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%); /* Start off-screen */
+    transition: transform 0.3s ease-out;
+    z-index: 1000;
+  }
+
+  /* Show mobile nav when active */
+  .mobile-nav.active {
+    display: flex; /* Display the mobile nav */
+    transform: translateY(0); /* Slide the nav in */
+  }
+
+  .mobile-nav .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    margin-left: 40px;
+  }
+
+  /* Style the nav links */
+  .mobile-nav .nav a {
+    margin-left: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 30px;
+    color: #fff; /* White text for better visibility */
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    background-color: transparent; /* Ensure background is transparent */
+  }
+
+  .mobile-nav .nav a:hover {
+    background-color: #b89f60; /* Add hover effect */
+  }
+
+  /* Close icon (cross) styling */
+  .mobile-nav .close-icon {
+    position: absolute;
+    top: 55px;
+    left: 40px;
+    font-size: 5px;
+    color: #fff;
+    cursor: pointer;
+  }
+     .logo1 img {
+      width: 150px; /* Adjust the size of the logo */
+      height: auto;
+      margin-left: 145px;
+    }
+    .logo img {
+      width: 150px; /* Adjust the size of the logo */
+      height: auto;
+      margin-left: 0px;
+      margin-top: 10px;
+    }
+    .mobile-nav .cta-button {
+      margin-left: 25px;
+    }
+    .section {
+      
+      width: 100%;
+      height: 750px; /* Adjust the height as needed */
+    
+    }
+    .section .image-middle {
+      position: absolute;
+      left: 250px;
+      top: 20px; /* Adjust this to slightly move the image upwards */
+      transform: translateX(-50%); /* Center horizontally */
+      z-index: 3;
+      width: 400px; /* Increased by 150% from original size (200px * 1.5) */
+      height: auto;
+    }
+    .section .image {
+      position: absolute;
+      top: 80px;
+      left: 30px;
+      z-index: 1;
+      width: 200px; /* Set to same size */
+      height: auto;
+    }
+    .section .image-second {
+      position: absolute;
+      top: 140px;
+      right: 30px;
+      z-index: 1;
+      width: 200px; /* Set to same size */
+      height: auto;
+      margin-top: 20px; /* Add margin from top */
+    }
+    .section .text {
+      position: absolute;
+      z-index: 2;
+      text-align: left;
+      color: #000;
+      font-size: 15px;
+      font-weight: 400;
+      width: 100%;
+      top: 550px;/* vertically */
+      transform: translateY(-50%);
+      left: 30px;
+      line-height: 25px;
+      width: fit-content; 
+    }
+    .square-images-container {
+    grid-template-columns: repeat(3, 1fr); /* 2 columns for mobile */
+  }
+    .photography-section {
+    grid-template-columns: 1fr; /* 1 photo in a row for mobile */
+  }
+
+}
+
+/* Show regular nav on larger screens */
+@media (min-width: 769px) {
+  .nav {
+    display: flex; /* Show regular nav links on desktop */
+  }
+
+  .mobile-menu-icon {
+    display: none; /* Hide the mobile menu icon on desktop */
+  }
+  .mobile-nav {
+    display: none; /* Hide the mobile nav on desktop */
+  }
+}
+  </style>
+
+
+</head>
+<body>
+  <div class="hero">
+    <video autoplay loop muted>
+      <source src="noise-video.mp4" type="video/mp4">
+      <source src="noise-video.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="overlay"></div>
+
+    <div class="header">
+      <div class="logo1">
+        <img src="your-logo.png" alt="AOE Logo">
+      </div>
+
+      <nav class="nav">
+        <a href="#">Photography</a>
+        <a href="#">Films</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Editorial</a>
+         
+        <a href="#"><img src="icon-instagram.svg" alt="Instagram"></a>
+        <button class="cta-button">Get In Touch</button>
+      </nav>
+
+      <!-- Mobile Menu Icon -->
+      <div class="mobile-menu-icon">
+        <img src="menu-icon.png" alt="Menu Icon">
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav">
+    <div class="close-icon">
+      <img src="close-icon.png" alt="Close Icon">
+    </div>
+    <div class="logo">
+      <img src="your-logo.png" alt="Logo">
+    </div>
+    <nav class="nav">
+      <a href="#">Photography</a>
+      <a href="#">Films</a>
+      <a href="#">Contact Us</a>
+      <a href="#">Editorial</a>
+       
+      <a href="#"><img src="icon-instagram.svg" alt="Instagram"></a>
+      <button class="cta-button">Get In Touch</button>
+    </nav>
+  </div>
+
+  <!-- New Section -->
+  <div class="section">
+    <!-- First Image -->
+    <img src="your-image-1.jpg" alt="First Image" class="image">
+    
+    <!-- Text in the center of the section -->
+    <div class="text">
+      <p>Considered to be the epitome of Modern Photography and <br>
+        Filmmaking, AOE has transformed the Indian Wedding landscape<br>
+        on a regular basis. For almost a decade House On The Clouds has<br>
+        been creating photographs and films which are timeless and have been<br>
+        etched in memories of thousands of people forever.<br><br>
+        Awarded as the Wedding Filmmaker of the year for four consecutive<br>
+        years at the Weddingsutra awards along with numerous other awards<br>
+        AOE is the only company listed on IMDB for its award winning films.</p>
+    </div>
+    
+
+    <!-- Second Image -->
+    <img src="your-image-2.jpg" alt="Second Image" class="image-second">
+    
+    <!-- New image positioned in the middle slightly upwards -->
+    <img src="your-middle-image.png" alt="Middle Image" class="image-middle">
+  </div>
+
+  <!-- New Section: Square Images -->
+<div class="square-images-section">
+  <div class="square-images-container">
+    <div class="square-image">
+      <img src="squareimagessection/image1.jpg" alt="Image 1">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image2.jpg" alt="Image 2">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image3.jpg" alt="Image 3">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image4.jpg" alt="Image 4">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image5.jpg" alt="Image 5">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image6.jpg" alt="Image 1">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image7.jpg" alt="Image 2">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image8.jpg" alt="Image 3">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image9.jpg" alt="Image 4">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image10.jpg" alt="Image 4">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image1.jpg" alt="Image 2">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image2.jpg" alt="Image 2">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image3.jpg" alt="Image 3">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image4.jpg" alt="Image 4">
+    </div>
+    <div class="square-image">
+      <img src="squareimagessection/image5.jpg" alt="Image 5">
+    </div>
+  </div>
+</div>
+
+<!-- New Photography Section -->
+<div class="photography-section">
+  <div class="photo-card">
+    <img src="photographysection/photo1.jpg" alt="Photo 1">
+    <div class="photo-info">
+      <p class="photo-title">Photo Title 1</p>
+      <p class="photo-description">This is a description for Photo 1.</p>
+    </div>
+  </div>
+
+  <div class="photo-card">
+    <img src="photographysection/photo2.jpg" alt="Photo 2">
+    <div class="photo-info">
+      <p class="photo-title">Photo Title 2</p>
+      <p class="photo-description">This is a description for Photo 2.</p>
+    </div>
+  </div>
+
+  <div class="photo-card">
+    <img src="photographysection/photo3.jpg" alt="Photo 3">
+    <div class="photo-info">
+      <p class="photo-title">Photo Title 3</p>
+      <p class="photo-description">This is a description for Photo 3.</p>
+    </div>
+  </div>
+
+  <div class="photo-card">
+    <img src="photographysection/photo4.jpg" alt="Photo 4">
+    <div class="photo-info">
+      <p class="photo-title">Photo Title 4</p>
+      <p class="photo-description">This is a description for Photo 4.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="photography-blog-button">
+  <button>Photography Blog</button>
+</div>
+<section class="video-section">
+  <div class="video-container">
+    <video autoplay muted loop class="video-background">
+      <source src="Untitleddesign2.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay2">
+      <div class="text-overlay">
+        <h1>SOUL + CINEMA</h1>
+        <p>
+          Every wedding is unique and so are our films. For the past 8 years, we
+          have set benchmarks in storytelling within the wedding realm and
+          beyond.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+   
+
+
+  <script>
+    const menuIcon = document.querySelector('.mobile-menu-icon');
+const closeIcon = document.querySelector('.close-icon');
+const mobileNav = document.querySelector('.mobile-nav');
+
+menuIcon.addEventListener('click', () => {
+  mobileNav.classList.add('active');
+});
+
+closeIcon.addEventListener('click', () => {
+  mobileNav.classList.remove('active');
+});
+
+  </script>
+</body>
+</html>
